@@ -1,8 +1,7 @@
-SKILL ASSIGNMENT-2
+SKILL ASSIGNMENT-1
 
 PROGRAM:
-Write an assembly language program in 8051 to generate a 200 µs delay using Timer 0 in Mode 1 and toggle Port 0.1.
-
+Write an assembly language program in 8051 to find the largest number from a given set of N numbers stored in memory. Display the result in AL register.
 
 APPARATUS REQUIRED:
 
@@ -11,37 +10,29 @@ Laptop with Keil Software
 PROGRAM:
 ```
 ORG 0000H
-
-MAIN:
-    MOV TMOD, #01H       
-    MOV P0, #00H        
-
-HERE:
-    ACALL DELAY_200US  
-    CPL P0.1           
-    SJMP HERE        
-
-DELAY_200US:
-    MOV TH0, #0FFH        
-    MOV TL0, #038H       
-    SETB TR0          
-
-WAIT_T0:
-    JNB TF0, WAIT_T0     
-    CLR TR0            
-    CLR TF0             
-    RET                
-
+MOV R0, #30H
+MOV R1, #05H
+MOV A, @R0
+INC R0
+DEC R1
+LOOP: MOV B, @R0
+      CJNE A, B, CHECK
+      SJMP NEXT
+CHECK: JNC NEXT     
+       MOV A, B     
+NEXT: INC R0
+      DJNZ R1, LOOP
+MOV P1, A           
+HERE: SJMP HERE
 END
 ```
 OUTPUT:
 
-<img width="1911" height="1139" alt="image" src="https://github.com/user-attachments/assets/61621525-94c7-40d2-8e2f-75aa10ee8439" />
-
-
-<img width="1919" height="1139" alt="image" src="https://github.com/user-attachments/assets/51fa21dc-c585-47b2-b481-0d2a386ad63b" />
+<img width="1919" height="1145" alt="image" src="https://github.com/user-attachments/assets/1fdbfc5a-8647-4d82-81ca-14ed74c214dd" />
 
 
 RESULT:
+Thus the assembly language program in 8051 to find the largest number from a given set of N numbers stored in memory is executed and displayed the largest in AL register.
 
-Therefore the assembly language program in 8051 to generate a 200 µs delay using Timer 0 in Mode 1 and toggle Port 0.1 is executed.
+
+
